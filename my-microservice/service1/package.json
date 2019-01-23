@@ -1,0 +1,35 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Basic node app to demonstrate pipeline",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint:js && npm run test:unit && npm run test:integration",
+    "lint:js": "eslint ./ --ext js",
+    "start": "node index.js",
+    "test:unit": "mocha test/unit --reporter spec",
+    "test:integration": "mocha test/integration/setup.js test/integration --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chris-mac/dvtt.git"
+  },
+  "author": "chris-mac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chris-mac/dvtt/issues"
+  },
+  "homepage": "https://github.com/chris-mac/dvtt#readme",
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.2.1"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "httpdispatcher": "^1.0.0",
+    "mocha": "^3.0.2"
+  }
+}
