@@ -21,15 +21,15 @@
   },
   "homepage": "https://github.com/chris-mac/dvtt#readme",
   "devDependencies": {
-    "eslint": "^3.5.0",
-    "eslint-config-airbnb": "^11.1.0",
-    "eslint-plugin-import": "^1.15.0",
-    "eslint-plugin-jsx-a11y": "^2.2.2",
-    "eslint-plugin-react": "^6.2.1"
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.4"
   },
   "dependencies": {
-    "chai": "^3.5.0",
-    "httpdispatcher": "^1.0.0",
-    "mocha": "^3.0.2"
+    "chai": "^4.2.0",
+    "httpdispatcher": "^2.1.2",
+    "mocha": "^5.2.0"
   }
 }
