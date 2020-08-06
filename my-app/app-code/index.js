@@ -34,13 +34,13 @@ dispatcher.onGet("/get1", function(req, res) {
 //A sample GET request
 dispatcher.onGet("/", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello world this is the index-y page');
+    res.end('Hello world this is the index page');
 });
 
 //A sample GET request
 dispatcher.onGet("/healthCheck", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hey we are on:'+ process.env.INFRA_ENV + 'with software version' +  process.env.VERSION);
+    res.end('ENV:'+ process.env.INFRA_ENV + '\n' + 'VERSION:' +  process.env.VERSION);
 });
 
 //A sample POST request
