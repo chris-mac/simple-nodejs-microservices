@@ -1,58 +1,41 @@
-//Set up a general purpose Node Server
-//Lets require/import the HTTP module
-var http = require('http');
-//Require the dispatcher module
-var HttpDispatcher = require('httpdispatcher');
-var dispatcher = new HttpDispatcher();
+// Use express to set up simple API
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+const port = 3000
 
-//Lets define a port we want to listen to
-const PORT=3000;
+// Use axios module for our API requests
+const axios = require('axios');
 
-//Lets use our dispatcher
-function handleRequest(request, response){
-    try {
-        //log the request on console
-        console.log(request.url);
-        //Disptach
-        dispatcher.dispatch(request, response);
-    } catch(err) {
-        console.log(err);
-    }
-}
-
-
-//For all your static (js/css/images/etc.) set the directory name (relative path).
-dispatcher.setStaticDirname(__dirname);
-dispatcher.setStatic('resources');
+app.get('/', (request, response) => {
+  console.log('index');
+  response.send('Hello World. Simple front end service');
+})
 
 //A sample GET request
-dispatcher.onGet("/get1", function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Page One Get');
-});
-
-//A sample GET request
-dispatcher.onGet("/", function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello world this is the index page');
-});
-
-//A sample GET request
-dispatcher.onGet("/healthCheck", function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('ENV:'+ process.env.INFRA_ENV + '\n' + 'VERSION:' +  process.env.VERSION);
-});
+//dispatcher.onGet("/api-call", function(req, res) {
+//    axios.get('http://localhost:3010/')
+//     .then(response => {
+//        res.end(response.data.info);
+//    })
+//    .catch(error => {
+//      console.log(error);
+//      res.end('Sorry there was an issue, please check logs for more details.');
+//    });
+//    res.writeHead(200, {'Content-Type': 'text/plain'});
+//});
 
 //A sample POST request
-dispatcher.onPost("/post1", function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Got Post Data');
-});
+//dispatcher.onPost("/post1", function(req, res) {
+//    res.writeHead(200, {'Content-Type': 'text/plain'});
+//    res.end('Got Post Data');
+//});
 
-//Create a server
-var server = http.createServer(handleRequest);
+app.get('/healthCheck', (request, response) => {
+  response.send(process.env.INFRA_ENV + 'VERSION:' + process.env.VERSION)
+})
 
-//Lets start our server
-server.listen(PORT, function(){
-    console.log("Server listening on: http://localhost:%s", PORT);
-});
+app.listen(port, () => {
+  console.log(`App running on port ${port}.`)
+})
+

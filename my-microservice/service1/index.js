@@ -15,6 +15,10 @@ app.get('/', (request, response) => {
   response.json({ info: 'Hello World. Simple API service' })
 })
 
+app.get('/healthCheck', (request, response) => {
+  response.json({ ENV: process.env.INFRA_ENV, VERSION: process.env.VERSION })
+})
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
