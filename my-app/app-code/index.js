@@ -12,24 +12,16 @@ app.get('/', (request, response) => {
   response.send('Hello World. Simple front end service');
 })
 
-//A sample GET request
-//dispatcher.onGet("/api-call", function(req, res) {
-//    axios.get('http://localhost:3010/')
-//     .then(response => {
-//        res.end(response.data.info);
-//    })
-//    .catch(error => {
-//      console.log(error);
-//      res.end('Sorry there was an issue, please check logs for more details.');
-//    });
-//    res.writeHead(200, {'Content-Type': 'text/plain'});
-//});
-
-//A sample POST request
-//dispatcher.onPost("/post1", function(req, res) {
-//    res.writeHead(200, {'Content-Type': 'text/plain'});
-//    res.end('Got Post Data');
-//});
+app.get('/api-call', (req, res) => {
+  axios.get('http://localhost:3010/')
+  .then(response => {
+    res.send('Successful call to API. Response: ' + response.data.info);
+  })
+  .catch(error => {
+    console.log(error);
+    res.send('Sorry there was an issue, please check logs for more details.');
+  });
+})
 
 app.get('/healthCheck', (request, response) => {
   response.send(process.env.INFRA_ENV + 'VERSION:' + process.env.VERSION)
