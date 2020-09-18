@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
+const api_endpoint = process.env.API_ENDPOINT
 
 // Use axios module for our API requests
 const axios = require('axios');
@@ -13,7 +14,7 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api-call', (req, res) => {
-  axios.get('http://localhost:3010/')
+  axios.get(api_endpoint)
   .then(response => {
     res.send('Successful call to API. Response: ' + response.data.info);
   })
